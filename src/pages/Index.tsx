@@ -1,12 +1,12 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Github, Linkedin, Download, Mail, ExternalLink, Code, Palette, Database, Globe } from 'lucide-react';
+import { Github, Linkedin, Download, Mail, ExternalLink, Code, Palette, Database, Globe, X } from 'lucide-react';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [showResumeModal, setShowResumeModal] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,6 +56,10 @@ const Index = () => {
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleDownloadResume = () => {
+    setShowResumeModal(true);
   };
 
   return (
@@ -115,6 +119,7 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
                 size="lg" 
+                onClick={handleDownloadResume}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 <Download className="w-5 h-5 mr-2" />
@@ -133,6 +138,31 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Resume Modal */}
+      {showResumeModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg max-w-4xl max-h-[90vh] w-full overflow-hidden">
+            <div className="flex justify-between items-center p-4 border-b">
+              <h3 className="text-lg font-semibold">Resume - Mohan R</h3>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowResumeModal(false)}
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="p-4 overflow-auto max-h-[calc(90vh-80px)]">
+              <img 
+                src="/lovable-uploads/886693bf-6487-42ab-a95a-84c08e64caa9.png" 
+                alt="Mohan R Resume" 
+                className="w-full h-auto"
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* About Section */}
       <section id="about" className="py-20 px-6 bg-white">
@@ -233,7 +263,7 @@ const Index = () => {
             <Button 
               size="lg"
               className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-3 rounded-full transition-all duration-300 hover:scale-105"
-              onClick={() => window.open('mailto:your.email@example.com', '_blank')}
+              onClick={() => window.open('mailto:mohanrengaraju2451@gmail.com', '_blank')}
             >
               <Mail className="w-5 h-5 mr-2" />
               Send Email
@@ -248,9 +278,42 @@ const Index = () => {
               Connect on LinkedIn
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-6 md:mb-0">
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                Mohan R
+              </h3>
+              <p className="text-gray-400">Full Stack Developer & Machine Learning Enthusiast</p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 items-center">
+              <Button 
+                size="lg" 
+                onClick={handleDownloadResume}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2 rounded-full transition-all duration-300 hover:scale-105"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Download Resume
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg"
+                onClick={() => window.open('https://www.linkedin.com/in/mohan-r-1646a9314/', '_blank')}
+                className="border-white text-white hover:bg-white hover:text-gray-900 px-6 py-2 rounded-full transition-all duration-300 hover:scale-105"
+              >
+                <Linkedin className="w-4 h-4 mr-2" />
+                Connect
+              </Button>
+            </div>
+          </div>
           
-          {/* Footer */}
-          <div className="mt-20 pt-8 border-t border-gray-700">
+          <div className="mt-8 pt-8 border-t border-gray-700">
             <div className="flex justify-center space-x-6 mb-6">
               <Button
                 variant="ghost"
@@ -269,12 +332,12 @@ const Index = () => {
                 <Linkedin className="w-5 h-5" />
               </Button>
             </div>
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-sm text-center">
               © 2024 Mohan R. All rights reserved.
             </p>
           </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 };
