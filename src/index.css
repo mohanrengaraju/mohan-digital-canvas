@@ -94,7 +94,9 @@
 
 @layer base {
   * {
-    @apply border-border;
+    /* Remove or replace the following line */
+    /* @apply border-border; */
+    border-color: hsl(var(--border)); /* Use your CSS variable directly if you want custom border color */
   }
 
   body {
