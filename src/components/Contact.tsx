@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Mail, Linkedin } from 'lucide-react';
+import { Mail, LinkedinIcon } from 'lucide-react';
 
 const Contact = () => {
   return (
@@ -19,15 +19,15 @@ const Contact = () => {
             <Mail className="w-5 h-5 mr-2" />
             Send Email
           </Button>
-          <Button 
+          {/* <Button 
             variant="outline" 
             size="lg"
-            className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-full transition-all duration-300 hover:scale-105"
+            className="border-white !text-white hover:!bg-white hover:!text-gray-900 px-8 py-3 rounded-full transition-all duration-300 hover:scale-105"
             onClick={() => window.open('https://www.linkedin.com/in/mohan-r-1646a9314/', '_blank')}
           >
-            <Linkedin className="w-5 h-5 mr-2" />
-            Connect on LinkedIn
-          </Button>
+            <LinkedinIcon className="w-5 h-5 mr-2" />
+            <span>Connect on LinkedIn</span>
+          </Button> */}
         </div>
       </div>
     </section>
